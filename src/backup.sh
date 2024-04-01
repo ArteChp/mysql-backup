@@ -6,12 +6,12 @@ set -o pipefail
 source ./env.sh
 
 echo "Creating backup of $MYSQL_DATABASE database..."
-pg_dump --format=custom \
+mysqldump --single-transaction $MSDUMP_EXTRA_OPTS \
         -h $MYSQL_HOST \
-        -p $MYSQL_PORT \
-        -U $MYSQL_USER \
-        -d $MYSQL_DATABASE \
-        $MSDUMP_EXTRA_OPTS \
+        -P $MYSQL_PORT \
+        -u $MYSQL_USER \
+        -p$MYSQL_PASSWORD \
+        $MYSQL_DATABASE \
         > db.dump
 
 timestamp=$(date +"%Y-%m-%dT%H:%M:%S")
