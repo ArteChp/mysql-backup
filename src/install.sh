@@ -5,7 +5,7 @@ set -o pipefail
 
 apk update
 
-# Install pg_dump
+# Install mysqldump
 apk add mysql-client
 
 # Install gpg
